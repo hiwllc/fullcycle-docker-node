@@ -1,0 +1,21 @@
+version: '3'
+
+services:
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: node-app
+    networks:
+      - node-network
+    volumes:
+      - ./index.js:/usr/src/app/index.js
+    ports:
+      - 3000:3000
+    command: node index.js
+    depends_on:
+      - database
+
+networks:
+  node-network:
+    driver: bridge
