@@ -20,7 +20,7 @@ async function fetchPeople() {
 }
 
 async function createPerson() {
-  await (await connection).query(`insert into people(name) values('${faker.name.findName()}')`)
+  await (await connection).query(`insert into people(name) values(?)`, [faker.name.findName()])
 }
 
 app.get('/', async (request, response) => {
